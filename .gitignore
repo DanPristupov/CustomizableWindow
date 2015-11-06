@@ -1,0 +1,8 @@
+﻿################################################################################
+# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+
+/src/Amusoft.Wpf/Amusoft.Wpf/bin/Debug
+/test/TestProject/bin/Debug
+/test/TestProject/obj/Debug
+/src/Amusoft.Wpf/Amusoft.Wpf/obj/Debug

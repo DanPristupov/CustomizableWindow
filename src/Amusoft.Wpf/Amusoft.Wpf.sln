@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "..\..\test\TestProject\TestProject.csproj", "{C0681D8D-60B5-47D3-A458-6173AAF146A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amusoft.Wpf", "Amusoft.Wpf\Amusoft.Wpf.csproj", "{AC60AE89-A116-4F33-9BF4-94DDC5939E9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0681D8D-60B5-47D3-A458-6173AAF146A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0681D8D-60B5-47D3-A458-6173AAF146A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0681D8D-60B5-47D3-A458-6173AAF146A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0681D8D-60B5-47D3-A458-6173AAF146A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC60AE89-A116-4F33-9BF4-94DDC5939E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC60AE89-A116-4F33-9BF4-94DDC5939E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC60AE89-A116-4F33-9BF4-94DDC5939E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC60AE89-A116-4F33-9BF4-94DDC5939E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

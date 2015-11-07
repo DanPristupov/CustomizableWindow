@@ -5,8 +5,9 @@
     <Style TargetType="{x:Type local:CustomizableWindow}">
         <Style.Resources>
             <Style TargetType="Button" x:Key="DefaultWindowButtonStyle">
-                <Setter Property="Foreground" Value="DarkGray"></Setter>
-                <Setter Property="FontFamily" Value="Webdings"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Background" Value="Transparent"></Setter>
             </Style>
         </Style.Resources>
         <Setter Property="WindowChrome.WindowChrome">
@@ -21,15 +22,36 @@
         <Setter Property="HeaderVisibility" Value="Visible"></Setter>
         <Setter Property="MinWidth" Value="240"></Setter>
         <Setter Property="MinHeight" Value="80"></Setter>
+	    <Setter Property="WindowButtonForeground" Value="Black" />
         <Setter Property="CloseButtonStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultWindowButtonStyle}">
+	                <Setter Property="Content">
+		                <Setter.Value>
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Canvas.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.3" ScaleY="0.3"></ScaleTransform>
+                                </Canvas.LayoutTransform>
+                                <Path Width="31.6666" Height="31.6667" Canvas.Left="22.1666" Canvas.Top="22.1667" Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CustomizableWindow}}, Path=WindowButtonForeground}" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z "/>
+                            </Canvas>
+                        </Setter.Value>
+	                </Setter>
                 </Style>
             </Setter.Value>
         </Setter>
         <Setter Property="RestoreButtonStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultWindowButtonStyle}">
+	                <Setter Property="Content">
+		                <Setter.Value>
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Canvas.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.3" ScaleY="0.3"></ScaleTransform>
+                                </Canvas.LayoutTransform>
+                                <Path Width="38" Height="38" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CustomizableWindow}}, Path=WindowButtonForeground}" Data="F1 M 54,54L 54,40L 33,40L 33,54L 54,54 Z M 57,34L 57,57L 30,57L 30,34L 57,34 Z M 43,25L 22,25L 22,39L 27,39L 27,42L 19,42L 19,19L 46,19L 46,31L 43,31L 43,25 Z "/>
+                            </Canvas>
+                        </Setter.Value>
+	                </Setter>
                 </Style>
             </Setter.Value>
         </Setter>
@@ -42,7 +64,7 @@
                                 <Canvas.LayoutTransform>
                                     <ScaleTransform ScaleX="0.3" ScaleY="0.3"></ScaleTransform>
                                 </Canvas.LayoutTransform>
-                                <Path Width="37" Height="38" Canvas.Left="20" Canvas.Top="19" Stretch="Fill" Fill="#FF000000" Data="F1 M 33,48L 33,54L 54,54L 54,40L 45,40L 45,34L 57,34L 57,57L 30,57L 30,48L 33,48 Z M 55,19L 55,31L 52,31L 52,27L 23,27L 23,46L 27,46L 27,49L 20,49L 20,19L 55,19 Z M 25.75,41L 34.75,41L 26.75,33L 30,29.75L 38,37.75L 38,28.75L 42,32.75L 42,45L 29.75,45L 25.75,41 Z "/>
+                                <Path Width="37" Height="38" Canvas.Left="20" Canvas.Top="19" Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CustomizableWindow}}, Path=WindowButtonForeground}" Data="F1 M 33,48L 33,54L 54,54L 54,40L 45,40L 45,34L 57,34L 57,57L 30,57L 30,48L 33,48 Z M 55,19L 55,31L 52,31L 52,27L 23,27L 23,46L 27,46L 27,49L 20,49L 20,19L 55,19 Z M 25.75,41L 34.75,41L 26.75,33L 30,29.75L 38,37.75L 38,28.75L 42,32.75L 42,45L 29.75,45L 25.75,41 Z "/>
                             </Canvas>
                         </Setter.Value>
                     </Setter>
@@ -52,14 +74,27 @@
         <Setter Property="MaximizeButtonStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultWindowButtonStyle}">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Canvas.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.3" ScaleY="0.3"></ScaleTransform>
+                                </Canvas.LayoutTransform>
+                                <Path Width="38" Height="38" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CustomizableWindow}}, Path=WindowButtonForeground}" Data="F1 M 43,48L 46,48L 46,57L 19,57L 19,34L 32,34L 32,40L 22,40L 22,54L 43,54L 43,48 Z M 21,19L 57,19L 57,50L 49,50L 49,46L 53,46L 53,27L 25,27L 25,32L 21,32L 21,19 Z M 37.75,30L 50,30L 50,42.25L 46,46.25L 46,37.25L 38,45.25L 34.75,42L 42.75,34L 33.75,34L 37.75,30 Z "/>
+                            </Canvas>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </Setter.Value>
         </Setter>
+	    <Setter Property="BorderBrush" Value="White" />
+	    <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CustomizableWindow}">
                     <Border BorderThickness="{TemplateBinding WindowFrameThickness}">
                         <Border 
+							Margin="0"
 							Background="{TemplateBinding Background}"
 							BorderBrush="{TemplateBinding BorderBrush}"
 							BorderThickness="{TemplateBinding BorderThickness}">
@@ -68,21 +103,24 @@
                                     <RowDefinition Height="Auto"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <DockPanel 
-									x:Name="PART_WindowHeader"
-									Background="Teal" 
-									Visibility="{TemplateBinding HeaderVisibility}">
+	                            <DockPanel 
+									Grid.Row="0"
+										x:Name="PART_WindowHeader"
+										Visibility="{TemplateBinding HeaderVisibility}">
                                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                                         <Button x:Name="PART_MinimizeButton" Visibility="{TemplateBinding MinimizeButtonVisibility}" Style="{TemplateBinding MinimizeButtonStyle}"></Button>
-                                        <Button Content="2" x:Name="PART_RestoreButton" Visibility="{TemplateBinding RestoreButtonVisibility}" Style="{TemplateBinding RestoreButtonStyle}"></Button>
-                                        <Button Content="1" x:Name="PART_MaximizeButton" Visibility="{TemplateBinding MaximizeButtonVisibility}" Style="{TemplateBinding MaximizeButtonStyle}"></Button>
-                                        <Button Content="r" x:Name="PART_CloseButton" Visibility="{TemplateBinding CloseButtonVisibility}" Style="{TemplateBinding CloseButtonStyle}"></Button>
+                                        <Button x:Name="PART_RestoreButton" Visibility="{TemplateBinding RestoreButtonVisibility}" Style="{TemplateBinding RestoreButtonStyle}"></Button>
+                                        <Button x:Name="PART_MaximizeButton" Visibility="{TemplateBinding MaximizeButtonVisibility}" Style="{TemplateBinding MaximizeButtonStyle}"></Button>
+                                        <Button x:Name="PART_CloseButton" Visibility="{TemplateBinding CloseButtonVisibility}" Style="{TemplateBinding CloseButtonStyle}"></Button>
                                     </StackPanel>
                                     <Border>
                                         <TextBlock Height="30" Foreground="White" Text="{TemplateBinding Title}"></TextBlock>
                                     </Border>
                                 </DockPanel>
-                                <Border Padding="{TemplateBinding Padding}" Grid.Row="1">
+	                            <Canvas Grid.Row="0" Right="0">
+                                    <Rectangle WindowChrome.IsHitTestVisibleInChrome="True" Canvas.Right="0" Canvas.Top="0" Height="{Binding Path=(WindowChrome.CaptionHeight), RelativeSource={RelativeSource AncestorType={x:Type local:CustomizableWindow}, Mode=FindAncestor}, Mode=OneWay}" Width="90" Fill="Orange"></Rectangle>
+	                            </Canvas>
+	                            <Border Padding="{TemplateBinding Padding}" Grid.Row="1">
                                     <AdornerDecorator>
                                         <ContentPresenter />
                                     </AdornerDecorator>

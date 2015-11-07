@@ -2,13 +2,16 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -16,6 +19,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 using Amusoft.Wpf.Extensions;
+using Binding = System.Windows.Data.Binding;
+using Button = System.Windows.Controls.Button;
 
 namespace Amusoft.Wpf
 {
@@ -128,13 +133,21 @@ namespace Amusoft.Wpf
 			set { SetValue(CloseButtonStyleProperty, value); }
 		}
 
+		public static readonly DependencyProperty WindowButtonForegroundProperty = DependencyProperty.Register(
+			nameof(WindowButtonForeground), typeof (Brush), typeof (CustomizableWindow), new PropertyMetadata(default(Brush)));
+
+		public Brush WindowButtonForeground
+		{
+			get { return (Brush) GetValue(WindowButtonForegroundProperty); }
+			set { SetValue(WindowButtonForegroundProperty, value); }
+		}
+
 		protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
 		{
 			base.OnPropertyChanged(e);
 
 			if (e.Property.Name == nameof(WindowState))
 			{
-			// todo prio 1 hitcapture über shell minimize
 				AdjustVisibilityToWindowState();
 
 				if (WindowState == WindowState.Maximized)

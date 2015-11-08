@@ -11,6 +11,7 @@
     <Grid >
 		<StackPanel Margin="10" Background="Blue">
 			<Label Content="some text" Foreground="White"></Label>
+			<Button Content="MahApps" Click="MahAppsClick" />
 		</StackPanel>
     </Grid>
 </amusoft:CustomizableWindow>

@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -25,10 +27,10 @@ using Button = System.Windows.Controls.Button;
 namespace Amusoft.Wpf
 {
 	[ContentProperty(nameof(Content))]
-	[TemplatePart(Name = PartNameMinimizeButton, Type = typeof(Button))]
-	[TemplatePart(Name = PartNameMaximizeButton, Type = typeof(Button))]
-	[TemplatePart(Name = PartNameRestoreButton, Type = typeof(Button))]
-	[TemplatePart(Name = PartNameCloseButton, Type = typeof(Button))]
+	[TemplatePart(Name = PartNameMinimizeButton, Type = typeof(FrameworkElement))]
+	[TemplatePart(Name = PartNameMaximizeButton, Type = typeof(FrameworkElement))]
+	[TemplatePart(Name = PartNameRestoreButton, Type = typeof(FrameworkElement))]
+	[TemplatePart(Name = PartNameCloseButton, Type = typeof(FrameworkElement))]
 	[TemplatePart(Name = PartNameWindowHeader, Type = typeof(FrameworkElement))]
 	public class CustomizableWindow : Window
 	{
@@ -37,10 +39,46 @@ namespace Amusoft.Wpf
 		protected const string PartNameRestoreButton = "PART_RestoreButton";
 		protected const string PartNameMinimizeButton = "PART_MinimizeButton";
 		protected const string PartNameMaximizeButton = "PART_MaximizeButton";
-
+		
 		static CustomizableWindow()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomizableWindow), new FrameworkPropertyMetadata(typeof(CustomizableWindow)));
+		}
+
+		public static readonly DependencyProperty CloseButtonTemplateProperty = DependencyProperty.Register(
+			nameof(CloseButtonTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate CloseButtonTemplate
+		{
+			get { return (DataTemplate) GetValue(CloseButtonTemplateProperty); }
+			set { SetValue(CloseButtonTemplateProperty, value); }
+		}
+
+		public static readonly DependencyProperty RestoreButtonTemplateProperty = DependencyProperty.Register(
+			nameof(RestoreButtonTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate RestoreButtonTemplate
+		{
+			get { return (DataTemplate) GetValue(RestoreButtonTemplateProperty); }
+			set { SetValue(RestoreButtonTemplateProperty, value); }
+		}
+
+		public static readonly DependencyProperty MaximizeButtonTemplateProperty = DependencyProperty.Register(
+			nameof(MaximizeButtonTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate MaximizeButtonTemplate
+		{
+			get { return (DataTemplate) GetValue(MaximizeButtonTemplateProperty); }
+			set { SetValue(MaximizeButtonTemplateProperty, value); }
+		}
+
+		public static readonly DependencyProperty MinimizeButtonTemplateProperty = DependencyProperty.Register(
+			nameof(MinimizeButtonTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate MinimizeButtonTemplate
+		{
+			get { return (DataTemplate) GetValue(MinimizeButtonTemplateProperty); }
+			set { SetValue(MinimizeButtonTemplateProperty, value); }
 		}
 
 		public static readonly DependencyProperty WindowFrameThicknessProperty = DependencyProperty.Register(
@@ -61,40 +99,40 @@ namespace Amusoft.Wpf
 			set { SetValue(HeaderVisibilityProperty, value); }
 		}
 
-		public static readonly DependencyProperty MinimizeButtonVisibilityProperty = DependencyProperty.Register(
-			nameof(MinimizeButtonVisibility), typeof (Visibility), typeof (CustomizableWindow), new PropertyMetadata(default(Visibility)));
+		public static readonly DependencyProperty IsMinimizeButtonVisibleProperty = DependencyProperty.Register(
+			nameof(IsMinimizeButtonVisible), typeof (bool), typeof (CustomizableWindow), new PropertyMetadata(default(bool)));
 
-		public Visibility MinimizeButtonVisibility
+		public bool IsMinimizeButtonVisible
 		{
-			get { return (Visibility) GetValue(MinimizeButtonVisibilityProperty); }
-			set { SetValue(MinimizeButtonVisibilityProperty, value); }
+			get { return (bool) GetValue(IsMinimizeButtonVisibleProperty); }
+			set { SetValue(IsMinimizeButtonVisibleProperty, value); }
 		}
 
-		public static readonly DependencyProperty MaximizeButtonVisibilityProperty = DependencyProperty.Register(
-			nameof(MaximizeButtonVisibility), typeof (Visibility), typeof (CustomizableWindow), new PropertyMetadata(default(Visibility)));
+		public static readonly DependencyProperty IsMaximizeButtonVisibleProperty = DependencyProperty.Register(
+			nameof(IsMaximizeButtonVisible), typeof (bool), typeof (CustomizableWindow), new PropertyMetadata(default(bool)));
 
-		public Visibility MaximizeButtonVisibility
+		public bool IsMaximizeButtonVisible
 		{
-			get { return (Visibility) GetValue(MaximizeButtonVisibilityProperty); }
-			set { SetValue(MaximizeButtonVisibilityProperty, value); }
+			get { return (bool) GetValue(IsMaximizeButtonVisibleProperty); }
+			set { SetValue(IsMaximizeButtonVisibleProperty, value); }
 		}
 
-		public static readonly DependencyProperty RestoreButtonVisibilityProperty = DependencyProperty.Register(
-			nameof(RestoreButtonVisibility), typeof (Visibility), typeof (CustomizableWindow), new PropertyMetadata(default(Visibility)));
+		public static readonly DependencyProperty IsRestoreButtonVisibleProperty = DependencyProperty.Register(
+			nameof(IsRestoreButtonVisible), typeof (bool), typeof (CustomizableWindow), new PropertyMetadata(default(bool)));
 
-		public Visibility RestoreButtonVisibility
+		public bool IsRestoreButtonVisible
 		{
-			get { return (Visibility) GetValue(RestoreButtonVisibilityProperty); }
-			set { SetValue(RestoreButtonVisibilityProperty, value); }
+			get { return (bool) GetValue(IsRestoreButtonVisibleProperty); }
+			set { SetValue(IsRestoreButtonVisibleProperty, value); }
 		}
 
-		public static readonly DependencyProperty CloseButtonVisibilityProperty = DependencyProperty.Register(
-			nameof(CloseButtonVisibility), typeof (Visibility), typeof (CustomizableWindow), new PropertyMetadata(default(Visibility)));
+		public static readonly DependencyProperty IsCloseButtonVisibleProperty = DependencyProperty.Register(
+			nameof(IsCloseButtonVisible), typeof (bool), typeof (CustomizableWindow), new PropertyMetadata(default(bool)));
 
-		public Visibility CloseButtonVisibility
+		public bool IsCloseButtonVisible
 		{
-			get { return (Visibility) GetValue(CloseButtonVisibilityProperty); }
-			set { SetValue(CloseButtonVisibilityProperty, value); }
+			get { return (bool) GetValue(IsCloseButtonVisibleProperty); }
+			set { SetValue(IsCloseButtonVisibleProperty, value); }
 		}
 
 		public static readonly DependencyProperty MinimizeButtonStyleProperty = DependencyProperty.Register(
@@ -142,6 +180,51 @@ namespace Amusoft.Wpf
 			set { SetValue(WindowButtonForegroundProperty, value); }
 		}
 
+		public static readonly DependencyProperty WindowButtonBackgroundProperty = DependencyProperty.Register(
+			nameof(WindowButtonBackground), typeof (Brush), typeof (CustomizableWindow), new PropertyMetadata(default(Brush)));
+
+		public Brush WindowButtonBackground
+		{
+			get { return (Brush) GetValue(WindowButtonBackgroundProperty); }
+			set { SetValue(WindowButtonBackgroundProperty, value); }
+		}
+
+		public static readonly DependencyProperty HeaderStyleProperty = DependencyProperty.Register(
+			nameof(HeaderStyle), typeof (Style), typeof (CustomizableWindow), new PropertyMetadata(default(Style)));
+
+		public Style HeaderStyle
+		{
+			get { return (Style) GetValue(HeaderStyleProperty); }
+			set { SetValue(HeaderStyleProperty, value); }
+		}
+
+		public static readonly DependencyProperty HeaderTitleBarStyleProperty = DependencyProperty.Register(
+			nameof(HeaderTitleBarStyle), typeof (Style), typeof (CustomizableWindow), new PropertyMetadata(default(Style)));
+
+		public Style HeaderTitleBarStyle
+		{
+			get { return (Style) GetValue(HeaderTitleBarStyleProperty); }
+			set { SetValue(HeaderTitleBarStyleProperty, value); }
+		}
+
+		public static readonly DependencyProperty TitleTemplateProperty = DependencyProperty.Register(
+			nameof(TitleTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate TitleTemplate
+		{
+			get { return (DataTemplate) GetValue(TitleTemplateProperty); }
+			set { SetValue(TitleTemplateProperty, value); }
+		}
+
+		public static readonly DependencyProperty IconTemplateProperty = DependencyProperty.Register(
+			nameof(IconTemplate), typeof (DataTemplate), typeof (CustomizableWindow), new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate IconTemplate
+		{
+			get { return (DataTemplate) GetValue(IconTemplateProperty); }
+			set { SetValue(IconTemplateProperty, value); }
+		}
+
 		protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
 		{
 			base.OnPropertyChanged(e);
@@ -166,14 +249,14 @@ namespace Amusoft.Wpf
 			switch (WindowState)
 			{
 				case WindowState.Normal:
-					MaximizeButtonVisibility = Visibility.Visible;
-					RestoreButtonVisibility = Visibility.Collapsed;
+					IsMaximizeButtonVisible = true;
+					IsRestoreButtonVisible = false;
 					break;
 				case WindowState.Minimized:
 					break;
 				case WindowState.Maximized:
-					MaximizeButtonVisibility = Visibility.Collapsed;
-					RestoreButtonVisibility = Visibility.Visible;
+					IsMaximizeButtonVisible = false;
+					IsRestoreButtonVisible = true;
 					break;
 			}
 		}
@@ -184,10 +267,10 @@ namespace Amusoft.Wpf
 		}
 
 		private FrameworkElement _templatePartWindowHeader;
-		private Button _templatePartButtonClose;
-		private Button _templatePartButtonMinimize;
-		private Button _templatePartButtonMaximize;
-		private Button _templatePartButtonRestore;
+		private FrameworkElement _templatePartButtonClose;
+		private FrameworkElement _templatePartButtonMinimize;
+		private FrameworkElement _templatePartButtonMaximize;
+		private FrameworkElement _templatePartButtonRestore;
 
 		public override void OnApplyTemplate()
 		{
@@ -207,28 +290,34 @@ namespace Amusoft.Wpf
 				BindingOperations.SetBinding(chrome, WindowChrome.CaptionHeightProperty, captionHeightBinding);
 			}
 
+			var visibilityConverter = new BooleanToVisibilityConverter();
+
 			if (Template.TryFindName(PartNameCloseButton, this, out _templatePartButtonClose))
 			{
 				_templatePartButtonClose.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
 				_templatePartButtonClose.PreviewMouseLeftButtonUp += TemplatePartButtonCloseOnMouseUp;
+				_templatePartButtonClose.SetBinding(VisibilityProperty, IsCloseButtonVisibleProperty, this, visibilityConverter);
 			}
 
 			if (Template.TryFindName(PartNameMinimizeButton, this, out _templatePartButtonMinimize))
 			{
 				_templatePartButtonMinimize.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
 				_templatePartButtonMinimize.PreviewMouseLeftButtonUp += TemplatePartButtonMinimizeOnMouseUp;
+				_templatePartButtonMinimize.SetBinding(VisibilityProperty, IsMinimizeButtonVisibleProperty, this, visibilityConverter);
 			}
 
 			if (Template.TryFindName(PartNameMaximizeButton, this, out _templatePartButtonMaximize))
 			{
 				_templatePartButtonMaximize.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
 				_templatePartButtonMaximize.PreviewMouseLeftButtonUp += TemplatePartButtonMaximizeOnMouseUp;
+				_templatePartButtonMaximize.SetBinding(VisibilityProperty, IsMaximizeButtonVisibleProperty, this, visibilityConverter);
 			}
 
 			if (Template.TryFindName(PartNameRestoreButton, this, out _templatePartButtonRestore))
 			{
 				_templatePartButtonRestore.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
 				_templatePartButtonRestore.PreviewMouseLeftButtonUp += TemplatePartButtonRestoreOnMouseUp;
+				_templatePartButtonRestore.SetBinding(VisibilityProperty, IsRestoreButtonVisibleProperty, this, visibilityConverter);
 			}
 
 			AdjustVisibilityToWindowState();
@@ -286,6 +375,16 @@ namespace Amusoft.Wpf
 				return;
 
 			WindowState = WindowState.Maximized;
+		}
+	}
+
+	public static class FrameworkElementExtensions
+	{
+		public static void SetBinding(this FrameworkElement target, DependencyProperty targetProperty, DependencyProperty sourceProperty, DependencyObject source, IValueConverter converter = null)
+		{
+			var binding = new Binding(sourceProperty.Name) {Mode = BindingMode.OneWay};
+			binding.Converter = converter;
+			target.SetBinding(targetProperty, binding);
 		}
 	}
 

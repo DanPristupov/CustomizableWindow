@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Amusoft.Wpf;
 using MahApps.Metro.Controls;
 
 namespace TestProject
 {
 	/// <summary>
-	/// Interaktionslogik für MainWindow.xaml
+	/// Interaktionslogik für MahAppsMetroWindow.xaml
 	/// </summary>
-	public partial class MainWindow : CustomizableWindow
+	public partial class MahAppsMetroWindow : MetroWindow
 	{
-		public MainWindow()
+		public MahAppsMetroWindow()
 		{
 			InitializeComponent();
-		}
-
-		private void MahAppsClick(object sender, RoutedEventArgs e)
-		{
-			var window = new MahAppsMetroWindow();
-			window.Show();
 		}
 	}
 }
